@@ -38,6 +38,16 @@ function Signal:Connect(handler)
 		end
 	end)
 end
+
+function Signal:connect(handler)
+	return self._bindableEvent.Event:Connect(function(key)
+		local args = self._argMap[key]
+		if args then
+			handler(table.unpack(args, 1, args.n))
+		end
+	end)
+end
+
 --
 function Signal:Wait()
 	local key = self._bindableEvent.Event:Wait()
