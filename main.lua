@@ -66,3 +66,4 @@ function Signal:Destroy()
 	setmetatable(self, nil)
 end
 --
+return Signal
