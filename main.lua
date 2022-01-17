@@ -48,11 +48,6 @@ function Signal:connect(handler)
 	end)
 end
 --
-function Signal:Disconnect()
-	self._bindableEvent.Event:Disconnect()
-end
-
---
 function Signal:Wait()
 	local key = self._bindableEvent.Event:Wait()
 	local args = self._argMap[key]
@@ -71,4 +66,3 @@ function Signal:Destroy()
 	setmetatable(self, nil)
 end
 --
-return Signal
