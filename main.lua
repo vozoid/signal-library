@@ -47,6 +47,10 @@ function Signal:connect(handler)
 		end
 	end)
 end
+--
+function Signal:Disconnect()
+	self._bindableEvent.Event:Disconnect()
+end
 
 --
 function Signal:Wait()
