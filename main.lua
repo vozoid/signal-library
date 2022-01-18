@@ -1,4 +1,4 @@
--- idk who made this but it wasnt me
+-- quenty made this
 local HttpService = game:GetService("HttpService")
 local ENABLE_TRACEBACK = false
 --
