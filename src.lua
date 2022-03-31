@@ -34,7 +34,12 @@ local signaltbl = {
                     done = true
                 end)
                 
-                repeat wait() until done
+                if wait then
+                    repeat wait() until done
+                else
+                    repeat until done
+                end
+
                 connection:disconnect()
             end,
             
