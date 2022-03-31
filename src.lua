@@ -62,16 +62,14 @@ local signaltbl = {
     end
 }
 
-do
-    local mt = getmetatable(signal)
+local mt = getmetatable(signal)
 
-    mt.__index = function(_, k)
-        return rawget(signaltbl, k:lower())
-    end
-
-    mt.__metatable = "This metatable is locked"
-    mt.__tostring = "Signal Library"
-    setreadonly(mt, true)
+mt.__index = function(_, k)
+    return rawget(signaltbl, k:lower())
 end
+
+mt.__metatable = "This metatable is locked"
+mt.__tostring = "Signal Library"
+setreadonly(mt, true)
 
 return signal
