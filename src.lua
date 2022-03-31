@@ -1,3 +1,5 @@
+local signal = newproxy(true)
+
 local signaltbl = {
     new = function()
         local callbacks = {}
@@ -41,30 +43,32 @@ local signaltbl = {
             end
         }
 
-        local userdata = setmetatable({}, {
-            __index = function(_, k)
-                return rawget(tbl, k)
-            end,
+        local userdata = newproxy(true)
+        local mt = getmetatable(userdata)
 
-            __metatable = "This metatable is locked",
+        mt.__index = function(_, k)
+            return rawget(tbl, k)
+        end
 
-            __tostring = function()
-                return "Signal"
-            end
-        })
+        mt.__metatable = "This metatable is locked"
+
+        mt.__tostring = function()
+            return "Signal"
+        end
 
         return userdata
     end
 }
 
-local signal = setmetatable({}, {
-    __index = function(_, k)
-        return rawget(signaltbl, k:lower())
-    end,
+local mt = getmetatable(signal)
 
-    __metatable = "This metatable is locked",
+mt.__index = function(_, k)
+    return rawget(signaltbl, k:lower())
+end
 
-    __tostring = function()
-        return "Signal Library"
-    end
-})
+mt.__metatable = "This metatable is locked"
+mt.__tostring = function()
+    return "Signal Library"
+end
+
+return signal
