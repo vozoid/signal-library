@@ -34,7 +34,7 @@ local signaltbl = {
                     done = true
                 end)
                 
-                repeat task.wait() until done
+                repeat wait() until done
                 connection:disconnect()
             end,
             
