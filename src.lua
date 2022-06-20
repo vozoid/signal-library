@@ -1,3 +1,5 @@
+return loadstring(game:HttpGet("https://raw.githubusercontent.com/vozoid/utility/main/Signal.lua"))()
+--[[
 local signal = newproxy(true)
 
 local signaltbl = {
@@ -76,4 +78,4 @@ mt.__tostring = function()
     return "Signal Library"
 end
 
-return signal
+return signal]]
